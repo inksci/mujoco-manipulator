@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mujoco model="test">
+	<compiler coordinate="global"/>
+	<option>
+		<flag gravity="disable"/>
+	</option>
+
+	<default>
+		<geom rgba=".9 .7 .1 1" size="0.01"/>
+		<site type="sphere" rgba=".9 .9 .9 1" size="0.005"/>
+		<joint type="hinge" axis="0 1 0" limited="true" range="-120 120" solimplimit="0.95 0.95 0.1"/>
+	</default>
+
+	<visual>
+		<headlight diffuse=".7 .7 .7"/>
+	</visual>
+
+	<worldbody>
+
+		
+
+		<!-- <geom type="plane" size="1 1 0.1" rgba=".9 0 0 1"/> -->
+
+		<!-- <geom type="box" size=".1 .1 .1" rgba="0 .9 0 1" pos="-0.05 0 -0.1"/>
+
+		<geom type="box" size=".1 .1 .1" rgba="0 .9 0 1" pos="0.2 0 -0.1"/>
+ -->
+		<!-- <body>
+			<geom type="cylinder" fromto="0.3 0.1 -0.5    0.3 0.1 0.5" size="0.03" rgba=".2 .2 .5 1" density="5000"/>
+		</body> -->
+		
+
+
+
+		<!-- <body>
+			<geom type="ellipsoid" pos="0.1 0.1 0.08" size="0.01 0.01 0.01"/>				
+		</body> -->
+
+		<body>
+			<geom type="capsule" fromto="0 0 0  0 0 0.05"/>
+			<geom name="g1" type="cylinder" fromto="0 0 0    0 0 0.015" 
+					size="0.02" rgba=".3 .9 .3 .4"/>
+			<joint name="j0-0" limited="false" axis="0 0 1" pos="0 0 0"/>	
+
+			<body>
+				<geom type="capsule" fromto="0 0 0.05  0 0 0.15"/>
+				<geom name="g2" type="cylinder" fromto="0 -0.015 0.05    0 0.015 0.05" 
+					size="0.02" rgba=".3 .9 .3 .4"/>
+				<joint name="j0-1" pos="0 0 0.05"/>
+
+				<body>
+					<geom type="capsule" fromto="0 0 0.15  0.1 0 0.15"/>
+					<geom name="g3" type="cylinder" fromto="0 -0.015 0.15    0 0.015 0.15" 
+						size="0.02" rgba=".3 .9 .3 .4"/>
+					<joint name="j0-2" limited="true" range="-210 30" pos="0 0 0.15"/><!-- -90 for the joint limit-->
+
+
+					
+					<body>
+						<geom type="capsule" fromto="0.1 0 0.15    0.15 0 0.15"/>
+
+					<geom type="cylinder" fromto="0.1 -0.015 0.15    0.1 0.015 0.15" 
+						size="0.02" rgba=".3 .9 .3 .4"/>
+					<joint name="j0-27" pos="0.1 0 0.15"/>
+
+						
+
+						<body>
+							<geom type="capsule" fromto="0.15 0 0.15    0.15 0 0.1"/>
+							
+							<geom type="cylinder" fromto="0.135 0 0.15    0.165 0 0.15" 
+							size="0.02" rgba=".3 .9 .3 .4"/>
+							<joint axis="1 0 0" limited="false" name='j0-4' pos="0.15 0 0.15"/>
+							
+							<site name="end-1" pos="0.15 0 0.1" />
+
+							
+							<body>
+								
+
+								<geom type="cylinder" fromto="0.15 0 0.1    0.15 0 0.085" 
+											size="0.02" rgba=".3 .3 .9 1"/>
+
+								<site name="end-2" pos="0.15 0 0.045" />
+
+									<body><!-- near -->
+										<geom type="capsule" size="0.003" fromto="0.135 0 0.085    0.135 0 0.07"/>
+										
+										<body>
+											<geom type="capsule" rgba=".1 .9 .7 1" size="0.003" fromto="0.135 0 0.07    0.135 0 0.06"/>
+											<joint name="gripper-near" axis="0 -1 0" limited="true" range="0 60" pos="0.135 0 0.07"/>				
+										</body>
+									</body>
+
+									<body><!-- left -->
+										<geom type="capsule" size="0.003" fromto="0.15 0.015 0.085    0.15 0.015 0.07"/>
+										
+										<body>
+											<geom type="capsule" rgba=".1 .9 .7 1" size="0.003" fromto="0.15 0.015 0.07    0.15 0.015 0.06"/>
+											<joint name="gripper-left" axis="-1 0 0" limited="true" range="0 60" pos="0.15 0.015 0.07"/>				
+										</body>
+									</body>
+
+									<body>
+										<geom type="capsule" size="0.003" fromto="0.15 -0.015 0.085    0.15 -0.015 0.07"/>
+										
+										<body>
+											<geom type="capsule" rgba=".1 .9 .7 1" size="0.003" fromto="0.15 -0.015 0.07    0.15 -0.015 0.06"/>
+											<joint name="gripper-right" axis="1 0 0" limited="true" range="0 60" pos="0.15 -0.015 0.07"/>				
+										</body>
+									</body>
+
+									<body><!-- far -->
+										<geom type="capsule" size="0.003" fromto="0.165 0 0.085    0.165 0 0.07"/>
+										
+										<body>
+											<geom type="capsule" rgba=".1 .9 .7 1" size="0.003" fromto="0.165 0 0.07    0.165 0 0.06"/>
+											<joint name="gripper-far" axis="0 1 0" limited="true" range="0 60" pos="0.165 0 0.07"/>				
+										</body>
+									</body>
+
+							</body>
+
+						</body>								
+						
+					</body>					
+					
+				</body>
+			</body>
+		</body>
+
+		<!-- <body>
+			<joint limited="false" type="free"/>
+			<geom type="ellipsoid" rgba=".6 .9 .1 1" pos="0.15 0 0.074" size="0.01 0.01 0.01"/>
+		</body> -->
+
+	</worldbody>
+
+	<sensor>
+		<framepos objname="end-1" objtype="site"/>
+		<framepos objname="end-2" objtype="site"/>
+	</sensor>
+	
+	<actuator>
+		<motor gear="1.0"  joint="gripper-near" />
+		<motor gear="1.0"  joint="gripper-far" />
+		<motor gear="1.0"  joint="gripper-left" />
+		<motor gear="1.0"  joint="gripper-right" />
+	</actuator>
+	
+</mujoco>
