@@ -8,7 +8,7 @@ from mujoco_py.modder import TextureModder
 
 class manipulator():
 	def __init__(self):
-		pass
+		self.is_render = 1
 		self.model = load_model_from_path("multi-links_v2.xml")
 		self.state_dim = 10+5+3
 		self.action_dim = 5
@@ -18,7 +18,7 @@ class manipulator():
 		self.ry = -0.2
 		self.rz = np.random.rand()*0.1+0.05
 		self.sim = MjSim(self.model)
-		# self.viewer = MjViewer(self.sim)
+		if self.is_render: self.viewer = MjViewer(self.sim)
 		self.qvel=np.zeros(9)
 
 		s = np.array( [self.sim.data.qvel[0], self.sim.data.qvel[1], self.sim.data.qvel[2], self.sim.data.qvel[3], self.sim.data.qvel[4],\
@@ -45,7 +45,7 @@ class manipulator():
 			self.sim.data.qvel[i] = 0
 
 		self.sim.step()
-		# self.viewer.render()
+		if self.is_render: self.viewer.render()
 
 		# print("self.sim.data.sensordata: ", self.sim.data.sensordata.tolist())
 
